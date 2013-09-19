@@ -1,0 +1,122 @@
+@import "vars"
+@import "compass"
+@import "lib/sassy-buttons"
+
+
+.chat
+    .chat-info
+        padding: .3rem
+
+        dl
+            margin: 0
+
+            dt
+                display: inline
+                font-weight: bold
+
+            dd
+                display: inline
+                margin: 0 0 0 .5rem
+
+    .content-wrapper
+        height: 20.45rem
+        overflow: hidden
+        position: relative
+        margin: 3px
+        z-index: 5
+
+        body.mobile &
+            height: 30rem
+
+        .up_beam
+            position: absolute
+            top: 0
+            left: 0
+            right: 0
+            height: 20px
+            z-index: 10
+            @include background-image(linear-gradient(top, rgba(255,255,255,1) 0%, rgba(255,255,255,0.78) 66%, rgba(255,255,255,0) 100%))
+
+        .content
+            padding: 0
+            list-style: none
+            margin: 0
+            z-index: 5
+            position: absolute
+            left: 0
+            right: 0
+            bottom: 0
+
+            li
+                padding: 3px 3px 2px
+                white-space: nowrap
+                @include border-radius(1px)
+
+                &:nth-child(odd)
+                    background-color: #f2f2f2
+
+    .input-box
+        border-top: 3px double #d5d5d5
+        position: relative
+
+        input
+            padding: 3px 5px 3px
+            border: 0
+            width: 100%
+            -webkit-box-sizing: border-box
+            -moz-box-sizing: border-box
+            box-sizing: border-box
+            @include border-bottom-left-radius(3px)
+            @include border-bottom-right-radius(3px)
+
+            &.animate
+                animation: ma_ab2 .5s
+                -webkit-animation: ma_ab2 .5s
+
+        .sent
+            display: none
+
+        body.mobile &
+            $button_size: 40px
+
+            height: $button_size
+
+            input
+                height: $button_size
+
+            .sent
+                @include sassy-button("matte", 2px, 1rem, #4ba3cc)
+                height: $button_size
+                position: absolute
+                right: 0
+                top: 0
+
+                &:after
+                    font-family: 'icons'
+                    content: "\2B06"
+                    font-size: 2rem
+                    font-weight: bold
+                    position: absolute
+                    top: 7px
+                    right: 10px
+
+
+@mixin ma_init_p()
+    from
+        box-shadow: 0 0 0 0 $base2_m3
+
+    50%
+        box-shadow: 0 0 20px 3px $base2_m3
+
+    to
+        box-shadow: 0 0 0  $base2_m3
+
+@mixin ma_init($n)
+    @keyframes ma_ab#{$n}
+        @include ma_init_p()
+    @-webkit-keyframes ma_ab#{$n}
+        @include ma_init_p()
+
+
+@include ma_init(1)
+@include ma_init(2)

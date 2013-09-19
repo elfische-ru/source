@@ -1,0 +1,27 @@
+application: elfische-new
+version: 5-1-12
+runtime: python27
+api_version: 1
+threadsafe: true
+
+
+builtins:
+- remote_api: on
+
+libraries:
+- name: jinja2
+  version: latest
+- name: django
+  version: latest
+
+inbound_services:
+- warmup
+- channel_presence
+
+skip_files:
+- ^local_settings.py
+- ^(.*/)?.*\.py[co]
+
+handlers:
+- url: /.*
+  script: main.app

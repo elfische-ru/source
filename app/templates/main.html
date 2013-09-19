@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Бисер — онлайн квартирник Вячеслава Иванцова (Эльфище), 26.10.2013, Берлин</title>
+    <link rel="stylesheet" type="text/css" href="{{ data.static_url }}/css/main.css" />
+    <meta name="viewport" content="width=device-width, user-scalable=no" />
+    <script>
+        var JS_DATA = {{ js_data }};
+    </script>
+
+    <script src="/_ah/channel/jsapi" type="text/javascript"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="{{ data.static_url }}/js/lib/jquery.injectCSS.js"></script>
+    <script src="{{ data.static_url }}/js/lib/cssanimation.min.js"></script>
+    <script src="{{ data.static_url }}/js/lib/cssanimation.jquery.min.js"></script>
+
+    <script src="{{ data.static_url }}/js/generated/main.js"></script>
+</head>
+<body{% if data.is_mobile %} class="mobile"{% endif %}>
+    <div id="test"></div>
+    <div class="wrapper">
+        {% block content %}{% endblock %}
+    </div>
+    {% if not debug %}
+        {% include "google_analytics.js.html" %}
+    {% endif %}
+</body>
+</html>

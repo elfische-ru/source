@@ -1,0 +1,63 @@
+@import "normalize"
+@import "vars"
+
+@import "fonts"
+
+
+textarea, input
+    outline: none
+
+.wrapper
+    padding-bottom: 1.5rem
+    overflow: hidden
+
+
+@import "info"
+@import "chat"
+
+
+body
+    font-size: 14px
+
+.wrapper
+    padding: $base_padding
+
+    > .block
+        @include border-radius(4px)
+        border: 1px solid #a7a7a7
+        width: 360px
+
+        &.info, &.chat
+            float: left
+
+        &.chat
+            margin: 0 0 0 $base_padding
+
+
+        @mixin width1
+            &.info, &.chat
+                float: none
+
+            &.chat
+                margin: $base_padding 0 0 0
+
+        @mixin width2
+            width: 100%
+
+
+        @media only screen and (max-width: 770px)
+            @include width1
+
+        @media only screen and (max-width: 410px)
+            @include width2
+
+        body.mobile &
+            @include width1
+            @include width2
+
+
+    body.mobile &
+        padding: 0
+
+        > .block
+            border: 0

@@ -1,0 +1,7 @@
+#!/usr/local/bin/fontforge
+
+Open($1 + "/" + $3 + ".svg")
+
+Generate($2 + "/" + $3 + ".ttf")
+Generate($2 + "/" + $3 + ".woff")
+Generate($2 + "/" + $3 + ".eot")
