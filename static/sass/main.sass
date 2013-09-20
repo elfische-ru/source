@@ -7,53 +7,64 @@
 textarea, input
     outline: none
 
-.wrapper
-    padding-bottom: 1.5rem
-    overflow: hidden
-
 
 @import "info"
 @import "chat"
+
+html, body
+    height: 100%
 
 
 body
     font-size: 14px
 
-.wrapper
-    padding: $base_padding
 
-    > .block
-        @include border-radius(4px)
-        border: 1px solid #a7a7a7
-        width: 360px
+.page-wrapper
+    min-height: 100%
+    margin-bottom: -$footer-height
+    overflow: hidden
 
-        &.info, &.chat
-            float: left
-
-        &.chat
-            margin: 0 0 0 $base_padding
+    &:after
+        content: ""
+        display: block
 
 
-        @mixin width1
+    > .content
+        overflow: hidden
+        padding: .5rem
+
+        > .block
+            @include border-radius(4px)
+            border: 1px solid #a7a7a7
+            width: 360px
+
             &.info, &.chat
-                float: none
+                float: left
 
             &.chat
-                margin: $base_padding 0 0 0
-
-        @mixin width2
-            width: 100%
+                margin: 0 0 0 $base_padding
 
 
-        @media only screen and (max-width: 770px)
-            @include width1
+            @mixin width1
+                &.info, &.chat
+                    float: none
 
-        @media only screen and (max-width: 410px)
-            @include width2
+                &.chat
+                    margin: $base_padding 0 0 0
 
-        body.mobile &
-            @include width1
-            @include width2
+            @mixin width2
+                width: 100%
+
+
+            @media only screen and (max-width: 770px)
+                @include width1
+
+            @media only screen and (max-width: 410px)
+                @include width2
+
+            body.mobile &
+                @include width1
+                @include width2
 
 
     body.mobile &
@@ -61,3 +72,20 @@ body
 
         > .block
             border: 0
+
+
+footer, .page-wrapper:after
+    height: $footer-height
+
+footer
+    dl
+        margin: 0 0 0 .5rem
+
+        dt, dd
+            float: left
+
+        dt
+            font-weight: bold
+
+        dd
+            margin: 0 0 0 .5rem

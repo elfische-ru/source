@@ -19,9 +19,12 @@
 </head>
 <body{% if data.is_mobile %} class="mobile"{% endif %}>
     <div id="test"></div>
-    <div class="wrapper">
-        {% block content %}{% endblock %}
+    <div class="page-wrapper">
+        <div class="content">
+            {% block content %}{% endblock %}
+        </div>
     </div>
+    {% block footer %}{% endblock %}
     {% if not debug %}
         {% include "google_analytics.js.html" %}
     {% endif %}

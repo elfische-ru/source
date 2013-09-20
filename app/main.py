@@ -57,6 +57,11 @@ class MainController(webapp2.RequestHandler):
         ))
 
 class ApiController(webapp2.RequestHandler):
+    def get(self, action):
+        if action == 'check':
+            users_count = chat.get_users_count()
+            self.response.out.write(users_count)
+
     def post(self, action):
         if action == 'chat_message':
             chat.write(self.request.get('msg'))
