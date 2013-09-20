@@ -19,10 +19,10 @@
                 margin: 0 0 0 .5rem
 
     .content-wrapper
-        height: 20.45rem
+        height: 33.95rem
         overflow: hidden
         position: relative
-        margin: 3px
+        margin: $small_padding
         z-index: 5
 
         body.mobile &
@@ -48,7 +48,7 @@
             bottom: 0
 
             li
-                padding: 3px 3px 2px
+                padding: $small_padding $small_padding 2px
                 white-space: nowrap
                 @include border-radius(1px)
 
@@ -56,18 +56,18 @@
                     background-color: #f2f2f2
 
     .input-box
-        border-top: 3px double #d5d5d5
+        border-top: $small_padding double #d5d5d5
         position: relative
 
         input
-            padding: 3px 5px 3px
+            padding: $small_padding 5px $small_padding
             border: 0
             width: 100%
             -webkit-box-sizing: border-box
             -moz-box-sizing: border-box
             box-sizing: border-box
-            @include border-bottom-left-radius(3px)
-            @include border-bottom-right-radius(3px)
+            @include border-bottom-left-radius($small_padding)
+            @include border-bottom-right-radius($small_padding)
 
             &.animate
                 animation: ma_ab2 .5s
@@ -106,7 +106,7 @@
         box-shadow: 0 0 0 0 $base2_m3
 
     50%
-        box-shadow: 0 0 20px 3px $base2_m3
+        box-shadow: 0 0 20px $small_padding $base2_m3
 
     to
         box-shadow: 0 0 0  $base2_m3

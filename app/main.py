@@ -54,7 +54,8 @@ class MainController(webapp2.RequestHandler):
                     'users_count': chat.get_users_count(),
                 },
                 request = self.request
-        ))
+            )
+        )
 
 class ApiController(webapp2.RequestHandler):
     def get(self, action):

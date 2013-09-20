@@ -1,15 +1,11 @@
+@import "compass/css3/border-radius"
 @import "normalize"
 @import "vars"
-
 @import "fonts"
 
 
 textarea, input
     outline: none
-
-
-@import "info"
-@import "chat"
 
 html, body
     height: 100%
@@ -24,47 +20,35 @@ body
     margin-bottom: -$footer-height
     overflow: hidden
 
-    &:after
-        content: ""
-        display: block
-
-
     > .content
         overflow: hidden
         padding: .5rem
 
-        > .block
-            @include border-radius(4px)
-            border: 1px solid #a7a7a7
+        > .column
             width: 360px
+            float: left
+            margin-left: .5rem
 
-            &.info, &.chat
-                float: left
+            &:first-child
+                margin-left: 0
 
-            &.chat
-                margin: 0 0 0 $base_padding
+            .block
+                @include border-radius(4px)
+                border: 1px solid #a7a7a7
+                margin-top: .5rem
 
-
-            @mixin width1
-                &.info, &.chat
-                    float: none
-
-                &.chat
-                    margin: $base_padding 0 0 0
-
-            @mixin width2
-                width: 100%
-
+                &:first-child
+                    margin-top: 0
 
             @media only screen and (max-width: 770px)
-                @include width1
+                margin: .5rem 0 0 0
+                float: none
+
+                &:first-child
+                    margin-top: 0
 
             @media only screen and (max-width: 410px)
-                @include width2
-
-            body.mobile &
-                @include width1
-                @include width2
+                width: 100%
 
 
     body.mobile &
@@ -73,6 +57,15 @@ body
         > .block
             border: 0
 
+
+@import "info"
+@import "media"
+@import "chat"
+
+
+.page-wrapper:after
+    content: ""
+    display: block
 
 footer, .page-wrapper:after
     height: $footer-height
@@ -89,3 +82,11 @@ footer
 
         dd
             margin: 0 0 0 .5rem
+
+
+body.mobile
+    .page-wrapper:after
+        display: none
+
+    footer
+        margin-top: .5rem

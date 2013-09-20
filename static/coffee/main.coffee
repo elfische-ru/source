@@ -36,7 +36,7 @@ class Chat
             @comm.sent 'chat_message', msg: @chat_input.val()
             @chat_input.val('').focus()
 
-        if (! JS_DATA.is_mobile)
+        if ! JS_DATA.is_mobile
             setTimeout(
                 =>
                     @chat_input.focus()
@@ -102,3 +102,9 @@ $(document).ready ->
         $(window).resize ->
             # show_size($(this).width())
             set_text_size()
+
+
+        if JS_DATA.is_mobile
+            $('footer').insertAfter(".info")
+
+
