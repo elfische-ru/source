@@ -1,0 +1,30 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
+<svg>
+<metadata>Icons</metadata>
+<defs>
+<font id="icons" horiz-adv-x="1716" >
+    <font-face
+        font-family="Icons"
+        font-weight="700"
+        font-stretch="normal"
+        units-per-em="2048"
+        panose-1="2 11 8 3 3 6 4 2 2 4"
+        ascent="1556"
+        descent="-492"
+        x-height="1120"
+        cap-height="1493"
+        bbox="-2190 -850 4045 2405.03"
+        underline-thickness="90"
+        underline-position="-85"
+        unicode-range="U+2B06-2B06"
+    />
+    <missing-glyph
+        horiz-adv-x="1229"
+        d="M102 -362v1806h1024v-1806h-1024zM217 -248h795v1577h-795v-1577z"
+    />
+
+    <glyph glyph-name="UPWARDS BLACK ARROW" unicode="&#x2b06;" d="M310 996l548 548l548 -548h-293v-996h-510v996h-293z" />
+</font>
+</defs>
+</svg>

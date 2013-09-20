@@ -1,0 +1,6 @@
+*.pyc
+
+/app/local_settings.py
+/scripts/.sass-cache
+/scripts/local.sh
+/tmp

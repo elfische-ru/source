@@ -1,0 +1,4 @@
+cron:
+- description: check users
+  url: /cron/check_users
+  schedule: every 1 minutes
