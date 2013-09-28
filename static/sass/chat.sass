@@ -5,7 +5,8 @@
 
 .chat
     .chat-info
-        padding: .3rem
+        padding: $small_padding
+        height: 20px
 
         dl
             margin: 0
@@ -16,17 +17,14 @@
 
             dd
                 display: inline
-                margin: 0 0 0 .5rem
+                margin: 0 0 0 $base_padding
 
     .content-wrapper
-        height: 33.95rem
-        overflow: hidden
+        height: 479px
         position: relative
         margin: $small_padding
         z-index: 5
-
-        body.mobile &
-            height: 30rem
+        overflow: hidden
 
         .up_beam
             position: absolute
@@ -51,16 +49,45 @@
                 padding: $small_padding $small_padding 2px
                 white-space: nowrap
                 @include border-radius(1px)
+                position: relative
 
                 &:nth-child(odd)
                     background-color: #f2f2f2
 
+                .message-wrapper
+                    display: block
+                    overflow: hidden
+
+                .fold-icon
+                    width: 17px
+                    position: absolute
+                    top: 0
+                    right: -1px
+                    bottom: 0
+                    @include background-image(linear-gradient(right, rgba(255,255,255,1) 0%, rgba(255,255,255,0.78) 66%, rgba(255,255,255,0) 100%))
+                    cursor: pointer
+
+                    &:before
+                        font-family: 'icons'
+                        content: "\2a"
+                        position: absolute
+                        bottom: -1px
+                        left: 7px
+
+                &.fold
+                    white-space: normal
+                    word-wrap: break-word
+                    padding-right: 11px
+
+
     .input-box
         border-top: $small_padding double #d5d5d5
         position: relative
+        height: 25px
 
         input
             padding: $small_padding 5px $small_padding
+            display: block
             border: 0
             width: 100%
             -webkit-box-sizing: border-box
@@ -85,20 +112,20 @@
                 height: $button_size
 
             .sent
-                @include sassy-button("matte", 2px, 1rem, #4ba3cc)
+                @include sassy-button("matte", 2px, 15px, #4ba3cc)
                 height: $button_size
                 position: absolute
                 right: 0
                 top: 0
 
                 &:after
-                    font-family: 'icons'
+                    font-family: "icons"
                     content: "\2B06"
                     font-size: 2rem
-                    font-weight: bold
+                    // font-weight: bold
                     position: absolute
                     top: 7px
-                    right: 10px
+                    right: 8px
 
 
 @mixin ma_init_p()

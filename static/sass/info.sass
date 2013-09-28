@@ -2,8 +2,6 @@
 
 
 .info
-    overflow: hidden
-
     .cover-wrapper
         position: relative
 
@@ -25,10 +23,10 @@
 
         > .section
             &.sozial-links
-                margin-top: 1rem
+                margin-top: $base_padding
 
                 > table
-                    margin-top: .5rem
+                    margin-top: $base_padding
 
             > h2
                 font-size: 1em
@@ -39,7 +37,7 @@
                 border-collapse: separate
 
                 &.datatime
-                    margin-top: .5rem
+                    margin-top: $base_padding
 
                     .clarify
                         margin: 0
@@ -62,7 +60,9 @@
                                 border-bottom-right-radius: $radius
 
                     td
-                        padding: .2rem .3rem
+                        padding: 2px $small_padding
 
                         &.label
                             width: 8rem
+
+                        // &.label

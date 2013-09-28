@@ -1,5 +1,6 @@
 *.pyc
 /app/local_settings.py
+/app/static/fonts
 /scripts/.sass-cache
 /scripts/local.sh
 /tmp

@@ -4,10 +4,12 @@ import datetime
 import json
 from google.appengine.api import channel
 from google.appengine.api import memcache
+from google.appengine.ext import db
 import django.utils.html
 
 sys.path.append(os.path.dirname(os.getcwd()))
 import model
+import module.maintenance
 
 
 class Chat:
@@ -37,7 +39,11 @@ class Chat:
 
     def write(self, msg):
         created = datetime.datetime.now()
-        model.Chat(msg = msg, created = created).put()
+        model.Chat(
+            msg = msg,
+            created = created,
+            lang=db.Category('ru')
+        ).put()
         self.sent_to_all({
             'add_message': {
                 'msg': django.utils.html.escape(msg),
@@ -52,6 +58,7 @@ class Chat:
     def get_last_messages(self):
         q = model.Chat.all()
         q.order('-created')
+        q.filter('lang IN', ['ru', None])
         out = []
         for i in q.run(limit=30):
             out.append({
@@ -85,8 +92,15 @@ class Chat:
 
     def check_user_live(self, stream_user_id):
         last_check = memcache.get('last_check_users')
-        last_check.remove(stream_user_id)
-        memcache.set('last_check_users', last_check)
+        # leak
+        if stream_user_id in last_check:
+            last_check.remove(stream_user_id)
+            memcache.set('last_check_users', last_check)
+
+    def maintenance(self):
+        pass
+        # module.maintenance.start()
+
 
 
 chat               = Chat()
@@ -98,3 +112,4 @@ disconnect_user    = chat.disconnect_user
 get_users_count    = chat.get_users_count
 check_users        = chat.check_users
 check_user_live    = chat.check_user_live
+maintenance        = chat.maintenance

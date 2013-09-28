@@ -25,6 +25,7 @@
     />
 
     <glyph glyph-name="UPWARDS BLACK ARROW" unicode="&#x2b06;" d="M310 996l548 548l548 -548h-293v-996h-510v996h-293z" />
+    <glyph glyph-name="UPWARDS BLACK ARROW" unicode="&#x2a;" d="m 851.30934,1506.939 547.99996,-548.00002 -547.99996,-548 L 732.42892,529.8194 1161.5485,958.93898 732.42891,1388.0586 z" />
 </font>
 </defs>
 </svg>

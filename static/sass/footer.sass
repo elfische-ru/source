@@ -1,0 +1,35 @@
+.page-wrapper:after
+    content: ""
+    display: block
+
+footer, .page-wrapper:after
+    height: $footer-height
+
+footer
+    dl
+        margin: 0 0 0 $base_padding
+
+        dt, dd
+            float: left
+
+        dt
+            font-weight: bold
+
+            &:before
+                content: ","
+                margin-right: .5rem
+
+            &:first-child
+                &:before
+                    display: none
+
+        dd
+            margin: 0 0 0 $base_padding
+
+
+body.mobile
+    .page-wrapper:after
+        display: none
+
+    footer
+        margin-top: $base_padding

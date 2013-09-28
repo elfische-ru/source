@@ -21,49 +21,24 @@ function remove-sass-debug {
             sed -ri '/(@media -sass-debug-info|\/\* line)/d' '{}' \;
 }
 
+function rsync-start {
+    mkdir -p ${VERSION_TARGET}${!#}
+    rsync -a -del --progress \
+        $(for item in ${@:1:${#@}-1}; do echo ${ROOT_PATH}$item; done) \
+        ${VERSION_TARGET}${!#}
+}
+
 function build_static {
-    # images
-    current_target=$VERSION_TARGET/images
-    mkdir -p $current_target
+    rsync-start  /static/images/                      /images/
+    rsync-start  /tmp/generated/css/{home,about}.css  /css/
+    rsync-start  /tmp/generated/js/                   /js/generated/
+    rsync-start  /static/coffee/js_lib/               /js/lib/
 
-    rsync -a -del --progress\
-        $ROOT_PATH/static/images/ \
-        $current_target/
-
-
-    # css
-    current_target=$VERSION_TARGET/css
-    mkdir -p $current_target
-
-    cp \
-        $ROOT_PATH/tmp/generated/css/main.css \
-        $current_target/
-
-    remove-sass-debug $current_target
-
-
-    # js
-    current_target=$VERSION_TARGET/js/generated
-    mkdir -p $current_target
-
-    rsync -a -del --progress\
-        $ROOT_PATH/tmp/generated/js/ \
-        $current_target/
-
-    current_target=$VERSION_TARGET/js/lib/
-    mkdir -p $current_target
-
-    rsync -a -del --progress\
-        $ROOT_PATH/static/coffee/js_lib/ \
-        $current_target/
-
-
-    # font
     build_font
 }
 
 function build_font {
-    target=$VERSION_TARGET/fonts
+    target=$ROOT_PATH/app/static/fonts
     mkdir -p $target
 
     fontforge \
@@ -72,26 +47,24 @@ function build_font {
         $target \
         icons
 
+    cp $ROOT_PATH/static/fonts/icons.svg $target
+
     rm $target/icons.afm
+}
+
+function git-start {
+    git \
+        --git-dir=$STATIC_GIT_FOLDER/.git \
+        --work-tree=$STATIC_GIT_FOLDER \
+        ${@}
 }
 
 function deploy_static {
     build_static
 
-    git \
-        --git-dir=$STATIC_GIT_FOLDER/.git \
-        --work-tree=$STATIC_GIT_FOLDER \
-        add -A .
-
-    git \
-        --git-dir=$STATIC_GIT_FOLDER/.git \
-        --work-tree=$STATIC_GIT_FOLDER \
-        commit --amend -m 'tmp1'
-
-    git \
-        --git-dir=$STATIC_GIT_FOLDER/.git \
-        --work-tree=$STATIC_GIT_FOLDER \
-        push -f origin gh-pages
+    git-start add -A .
+    git-start commit --amend -m 'tmp1'
+    git-start push -f origin gh-pages
 }
 
 function deploy_app {
@@ -111,14 +84,19 @@ case $1 in
         ;;
     build_static)
         build_static
-        # build_font
+        ;;
+    build_font)
+        build_font
         ;;
     all)
         deploy_static
         deploy_app
         ;;
+    # test)
+    #     git-start  aa bb cc dd ee
+    #     ;;
     *)
-        echo "usage: $0 {static|app|all}"
+        echo "usage: $0 {static|app|all|build_static|build_font}"
         ;;
 esac
 

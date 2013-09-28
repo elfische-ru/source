@@ -75,20 +75,44 @@ class Chat
         else if data.check_user isnt undefined
             @comm.sent 'check_user_live', user_id: JS_DATA.user_id
 
+    check_message_length_async: (message) ->
+        setTimeout(
+            =>
+                if ! @check_message_length(message)
+                    @check_message_length_async(message)
+            ,
+            100
+        )
+
+    check_message_length: (message) ->
+        parent = message.closest('li')
+        if message.width() > 346
+            fold = $('<span>')
+                .addClass('fold-icon')
+                .click( =>
+                    parent.toggleClass('fold')
+                )
+            parent.append(fold)
+
     add_messages: (messages) ->
         add_items = []
         for item in messages
-            add_items.push($('<li>').append(item.msg))
+            message = $('<span>').text(item.msg)
+            @check_message_length_async(message)
+            add_items.push(
+                $('<li>').append(
+                    $('<span>')
+                        .addClass('message-wrapper')
+                        .append(message)
+                )
+            )
         add_items.reverse()
         @content.append(add_items)
 
 
 $(document).ready ->
-
-        new Chat()
-
         #=======================================================================
-
+        new Chat()
         show_size = (width) -> $('#test').text width
         set_text_size = ->
             $('.info .cover-wrapper .summary').css({
@@ -108,3 +132,7 @@ $(document).ready ->
             $('footer').insertAfter(".info")
 
 
+$(window).load ->
+        $('.chat .content-wrapper').height(
+            $('body > .page-wrapper > .content > .column:eq(0)').height() - $('.media').height() - 69
+        )

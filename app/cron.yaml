@@ -1,3 +1,6 @@
+# Source code for http://www.elfische.ru website.
+# Released under the MIT license (http://opensource.org/licenses/MIT).
+
 cron:
 - description: check users
   url: /cron/check_users
