@@ -129,6 +129,10 @@ function app_restart {
     _app start
 }
 
+function log {
+    tail -f $APP_LOG_PATH
+}
+
 
 case $1 in
     start)
@@ -144,6 +148,9 @@ case $1 in
         ;;
     app_restart)
         app_restart
+        ;;
+    log)
+        log
         ;;
     *)
         echo "usage: $0 {start|stop|restart|app_restart}"

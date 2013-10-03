@@ -1,0 +1,26 @@
+{% extends "main.jinja2" %}
+
+{% block title %}
+Über Online-Hauskonzerten, inoffizielle Website von Elfische
+{% endblock %}
+
+{% block content %}
+    <a class="back" href="/{{ lang }}">{% trans %}Вернуться на заглавную страницу{% endtrans %}</a>
+    <div class="about">
+        <h1>Online-Hauskonzerten von Wjatscheslaw Iwanzow (Elfische)</h1>
+        <div class="content">
+            <p>Gemeinnütziges Non-Profit Projekt.</p>
+            <p><a href="https://github.com/elfische-ru/source">Quellcode</a> ist geöffnet unter der <a href="http://de.wikipedia.org/wiki/MIT-Lizenz">MIT-Lizenz</a>, Inhalt: <a class="c1" href="http://creativecommons.org/licenses/by/3.0/deed.de">CC BY 3.0</a>.</p>
+            <div class="contents">
+                <p>Jede Veranstaltung vereinigt (grob):</p>
+                <ul>
+                    <li>Hauskonzert (<a href="http://en.wikipedia.org/wiki/House_concert">wiki: en</a>),</li>
+                    <li><a href="http://de.wikipedia.org/wiki/Internetradio">Internetradio</a>-Sendung,</li>
+                    <li>der integrierte in der Website Chat.</li>
+                </ul>
+            </div>
+            <p>Insgesamt wurde ca. 7 Online-Hauskonzerten, seit ungefähr 2003 gemacht.</p>
+            <p>Die maximale Anzahl der gleichzeitigen Hörern für heute: bis zu 150 Personen.</p>
+        </div>
+    </div>
+{% endblock %}

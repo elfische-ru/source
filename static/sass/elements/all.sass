@@ -1,0 +1,51 @@
+
+textarea, input
+    outline: none
+
+html, body
+    height: 100%
+
+body
+    font-size: 14px
+
+
+.page-wrapper
+    min-height: 100%
+    margin-bottom: -$footer-height
+    overflow: hidden
+
+    > .content
+        overflow: hidden
+        padding: $base_padding
+
+        > .column
+            width: 360px
+            float: left
+
+            &:first-child
+                > .column-wrapper
+                    margin-left: 0
+
+            > .column-wrapper
+                margin-left: $base_padding
+
+                .block
+                    @include border-radius(4px)
+                    border: 1px solid #a7a7a7
+                    margin-top: $base_padding
+
+                    &:first-child
+                        margin-top: 0
+
+            @media only screen and (max-width: 880px)
+                width: 50%
+                margin: 0
+
+            @media only screen and (max-width: 500px)
+                width: 100%
+
+    body.mobile &
+        padding: 0
+
+        > .block
+            border: 0

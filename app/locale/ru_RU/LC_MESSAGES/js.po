@@ -1,0 +1,28 @@
+# Russian (Russia) translations for elfische.ru.
+# Copyright (C) 2013 elfische.ru
+# This file is distributed under the same license as the elfische.ru
+# project.
+# mcandrews <mcandrews@elfische.ru>, 2013.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: elfische.ru 5-1-15-r3\n"
+"Report-Msgid-Bugs-To: info@elfische.ru\n"
+"POT-Creation-Date: 2013-10-02 03:00+0200\n"
+"PO-Revision-Date: 2013-10-01 13:32+0200\n"
+"Last-Translator: mcandrews <mcandrews@elfische.ru>\n"
+"Language-Team: ru_RU <LL@li.org>\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 0.9.6\n"
+
+#: tmp/generated/js/home.js:150
+msgid "Скрыто {0} сообщение"
+msgid_plural ""
+msgstr[0] "Скрыто {0} сообщение"
+msgstr[1] "Скрыто {0} сообщения"
+msgstr[2] "Скрыто {0} сообщений"
+

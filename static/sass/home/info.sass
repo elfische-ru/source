@@ -1,0 +1,68 @@
+@import "vars"
+
+
+.info
+    .cover-wrapper
+        position: relative
+
+        > .cover
+            display: block
+            width: 100%
+
+        > h1
+            font-size: 3em
+            font-weight: normal
+            margin: 0
+            position: absolute
+            bottom: 4%
+            left: 4%
+            color: #fff
+
+    .content-wrapper
+        padding: $base_padding
+
+        > .section
+            &.sozial-links
+                margin-top: $base_padding
+
+                > table
+                    margin-top: $base_padding
+
+            > h2
+                font-size: 1em
+                margin: 0
+
+            > table
+                width: 100%
+                border-collapse: separate
+
+
+                tbody
+                    &.datatime
+                        margin-top: $base_padding
+
+                        .clarify
+                            margin: 0
+                            font-size: .9em
+                            color: #818181
+
+                    tr
+                        &:nth-child(odd)
+                            td
+                                background-color: #f1f1f1
+
+                                $radius: 2px
+
+                                &:first-child
+                                    border-top-left-radius: $radius
+                                    border-bottom-left-radius: $radius
+
+                                &:last-child
+                                    border-top-right-radius: $radius
+                                    border-bottom-right-radius: $radius
+
+                        td
+                            padding: 2px $small_padding
+
+                            &.label
+                                width: 8rem

@@ -12,6 +12,13 @@ indexes:
 
 - kind: ChatProduction
   properties:
+  - name: hidden
+  - name: lang
+  - name: created
+    direction: desc
+
+- kind: ChatProduction
+  properties:
   - name: lang
   - name: created
     direction: desc

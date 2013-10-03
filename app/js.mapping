@@ -1,0 +1,3 @@
+[javascript: tmp/generated/js/**.js]
+extract_messages = gettext
+input_encoding = utf-8

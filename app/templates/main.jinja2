@@ -9,9 +9,9 @@
     </script>
     {% endif %}
     {% block header_css_style %}{% endblock %}
-    {% if data.header_files %}{{ data.header_files }}{% endif %}
+    {% if header_files %}{{ header_files }}{% endif %}
 </head>
-<body{% if data.is_mobile %} class="mobile"{% endif %}>
+<body{% if is_mobile %} class="mobile"{% endif %}>
     <div class="page-wrapper">
         <div class="content">
             {% block content %}{% endblock %}
@@ -19,7 +19,7 @@
     </div>
     {% block footer %}{% endblock %}
     {% if not debug %}
-        {% include "google_analytics.js.html" %}
+        {% include "google_analytics.js.jinja2" %}
     {% endif %}
 </body>
 </html>

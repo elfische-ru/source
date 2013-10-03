@@ -2,7 +2,7 @@
 # Released under the MIT license (http://opensource.org/licenses/MIT).
 
 application: elfische-new
-version: 5-1-15
+version: 5-1-16
 runtime: python27
 api_version: 1
 threadsafe: true
@@ -16,6 +16,8 @@ libraries:
 - name: jinja2
   version: latest
 - name: django
+  version: latest
+- name: webob
   version: latest
 
 inbound_services:

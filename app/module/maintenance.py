@@ -1,31 +1,28 @@
 import sys
 import os
 from google.appengine.ext import db
-
-sys.path.append(os.path.dirname(os.getcwd()))
-import model
-
-
 from google.appengine.ext import deferred
-from google.appengine.ext import db
+import model
 
 BATCH_SIZE = 100  # ideal batch size may vary based on entity size.
 
-def UpdateSchema(cursor=None, num_updated=0):
+
+def UpdateSchema(cursor=None):
+    # pass
     query = model.ChatProduction.all()
     if cursor:
         query.with_cursor(cursor)
 
     to_put = []
     for p in query.fetch(limit=BATCH_SIZE):
-        p.lang = db.Category('ru')
+        # p.lang = db.Category('ru')
+        p.hidden = False
         to_put.append(p)
 
     if to_put:
+        # db.delete(to_put)
         db.put(to_put)
-        num_updated += len(to_put)
-        deferred.defer(
-            UpdateSchema, cursor=query.cursor(), num_updated=num_updated)
+        deferred.defer(UpdateSchema, cursor=query.cursor())
     else:
         # complete
         pass
