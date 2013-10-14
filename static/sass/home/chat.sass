@@ -6,6 +6,10 @@
 .chat
     position: relative
 
+    @include display-flex()
+    @include flex-direction(column)
+
+
     .chat-info
         padding: $small_padding
         height: 20px
@@ -36,150 +40,14 @@
             color: #fff
 
     .content-wrapper
-        height: 479px
-        position: relative
         margin: $small_padding
         z-index: 5
         overflow: hidden
+        position: relative
+        @include flex(auto)
 
-        .up_beam
-            position: absolute
-            top: 0
-            left: 0
-            right: 0
-            height: 20px
-            z-index: 10
-            @include background-image(linear-gradient(top, rgba(255,255,255,1) 0%, rgba(255,255,255,0.78) 66%, rgba(255,255,255,0) 100%))
+        @import "chat/content"
 
-        .content
-            padding: 0
-            list-style: none
-            margin: 0
-            z-index: 5
-            position: absolute
-            left: 0
-            right: 0
-            bottom: 0
-
-            li
-                padding: $small_padding $small_padding 2px
-                white-space: nowrap
-                @include border-radius(1px)
-                position: relative
-
-                &:nth-child(odd)
-                    background-color: #f2f2f2
-
-                &.fold
-                    white-space: normal
-                    word-wrap: break-word
-                    padding-right: 11px
-
-                // &:hover
-                //     .message-control
-                //         display: block
-
-                &.hidden, &.first-hidden
-                    .fold-icon
-                        display: none
-
-                &.hidden
-                    display: none
-
-                &.first-hidden
-                    height: 1rem
-
-                    .message-wrapper
-                        display: none
-
-                    .hidden-count
-                        line-height: .5rem
-                        color: #565656
-                        font-size: .6rem
-                        display: block
-                        position: absolute
-                        text-align: right
-                        top: 0
-                        left: 0
-                        bottom: 0
-                        right: 0
-                        background-color: #fff
-                        padding: .3rem .3rem 0 0
-
-                        span
-                            display: block
-                            border: 1px dotted #D9D9D9
-                            padding: .1rem $small_padding
-
-                .message-wrapper
-                    display: block
-                    overflow: hidden
-
-                .fold-icon
-                    width: 17px
-                    position: absolute
-                    top: 0
-                    right: -1px
-                    bottom: 0
-                    @include background-image(linear-gradient(right, rgba(255,255,255,1) 0%, rgba(255,255,255,0.78) 66%, rgba(255,255,255,0) 100%))
-                    cursor: pointer
-                    z-index: 10
-
-                    &:before
-                        font-family: 'icons'
-                        content: "\2a"
-                        position: absolute
-                        bottom: -1px
-                        left: 7px
-
-                .message-control
-                    display: none
-                    position: absolute
-                    right: 10px
-                    top: 0
-                    bottom: 0
-                    z-index: 20
-
-                    $size1: 17px
-                    width: 2 * $size1 + 2 * $small_padding + 2px
-
-                    .check, .hide
-                        text-align: center
-                        position: absolute
-                        top: 2px
-                        display: block
-                        width: $size1
-                        height: $size1
-                        @include border-radius($small_padding * 2)
-                        cursor: pointer
-                        box-shadow: 0 0 10px $small_padding #fff
-
-                        &:before
-                            color: #fff
-                            font-weight: bold
-
-                    .check
-                        background-color: #D1D2F9
-
-                        &:before
-                            content: "\2713"
-                        &:hover
-                            background-color: #5C5FFB
-
-                    .hide
-                        background-color: #F4C8AC
-                        left: $size1 + 2 * $small_padding
-
-                        &:before
-                            content: "\2A2F"
-                        &:hover
-                            background-color: #FF2200
-
-                &.check .message-control .check
-                    background-color: #9A9DFF
-
-                &.hide .message-control .hide
-                    background-color: #FF6500
 
     &.show-hidden
         .chat-hidden
@@ -204,8 +72,8 @@
 
     .input-box
         border-top: $small_padding double #d5d5d5
-        position: relative
         height: 25px
+        width: 100%
 
         input
             padding: $small_padding 5px $small_padding
@@ -225,28 +93,6 @@
         .sent
             display: none
 
-        body.mobile &
-            $button_size: 40px
-
-            height: $button_size
-
-            input
-                height: $button_size
-
-            .sent
-                @include sassy-button("matte", 2px, 15px, #4ba3cc)
-                height: $button_size
-                position: absolute
-                right: 0
-                top: 0
-
-                &:after
-                    font-family: "icons"
-                    content: "\2B06"
-                    font-size: 2rem
-                    position: absolute
-                    top: 7px
-                    right: 8px
 
 
 @mixin ma_init_p()
@@ -268,3 +114,5 @@
 
 @include ma_init(1)
 @include ma_init(2)
+
+

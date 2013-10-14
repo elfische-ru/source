@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  5-1-15-r3\n"
 "Report-Msgid-Bugs-To: info@elfische.ru\n"
-"POT-Creation-Date: 2013-10-02 03:00+0200\n"
+"POT-Creation-Date: 2013-10-11 00:49+0200\n"
 "PO-Revision-Date: 2013-10-01 03:07+0100\n"
 "Last-Translator: mcandrews <mcandrews@elfische.ru>\n"
 "Language-Team: de_DE <info@elfische.ru>\n"
@@ -17,8 +17,16 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 0.9.6\n"
 
+#: app/templates/about.jinja2:3
+msgid "О проекте онлайн-квартирников, неофициального сайта Эльфище"
+msgstr ""
+
+#: app/templates/about.jinja2:6
+msgid "Вернуться на заглавную страницу"
+msgstr "Zurück zu Homepage"
+
 #: app/templates/home.jinja2:8
-msgid "Бисер — онлайн квартирник Вячеслава Иванцова (Эльфище), 26.10.2013, Берлин"
+msgid "Бисер — онлайн-квартирник Вячеслава Иванцова (Эльфище), 26.10.2013, Берлин"
 msgstr ""
 "Glasperlen — Online-Hauskonzert von Wjatscheslaw Iwanzow (Elfische), "
 "26.10.2013, Berlin"
@@ -27,7 +35,7 @@ msgstr ""
 msgid "Бисер"
 msgstr "Glasperlen"
 
-#: app/templates/home.jinja2:22
+#: app/templates/home.jinja2:19
 msgid "Онлайн-квартирник Вячеслава Иванцова (Эльфище)"
 msgstr "Online-Hauskonzert von Wjatscheslaw Iwanzow (Elfische)"
 
@@ -47,65 +55,60 @@ msgstr "Anfang"
 msgid "<p class=\"clarify\">московское время: 19:00</p>"
 msgstr " "
 
-#: app/templates/home.jinja2:31
+#: app/templates/home.jinja2:29
 msgid "Место проведения"
 msgstr "Location"
 
-#: app/templates/home.jinja2:31
+#: app/templates/home.jinja2:29
 msgid "Берлин, Германия"
 msgstr "Berlin"
 
-#: app/templates/home.jinja2:32
+#: app/templates/home.jinja2:30
 msgid "Трансляция"
 msgstr "Abdeckung"
 
-#: app/templates/home.jinja2:38
+#: app/templates/home.jinja2:36
 msgid "Социальные сети"
 msgstr "Soziale Netzwerke"
 
-#: app/templates/home.jinja2:41
+#: app/templates/home.jinja2:39
 msgid "Вконтакте"
 msgstr "Vkontakte"
 
-#: app/templates/home.jinja2:43
+#: app/templates/home.jinja2:41
 msgid "Одноклассники"
 msgstr "Odnoklassniki"
 
-#: app/templates/home.jinja2:56
+#: app/templates/home.jinja2:52
 msgid "Тестовое радио"
 msgstr "Test Radio"
 
-#: app/templates/home.jinja2:59
+#: app/templates/home.jinja2:55
 #, python-format
 msgid "Ваш браузер не поддерживает %(start_link)sHTML5 audio%(end_link)s!"
 msgstr "Ihrer Browser unterstützt %(start_link)sHTML5 Audio%(end_link)s nicht!"
 
-#: app/templates/home.jinja2:67
+#: app/templates/home.jinja2:63
 msgid "Посетителей:"
 msgstr "Besucheranzahl:"
 
-#: app/templates/home.jinja2:68
+#: app/templates/home.jinja2:64
 msgid "Скрытые сообщения"
 msgstr "Versteckte Nachrichten"
 
-#: app/templates/home.jinja2:73
+#: app/templates/home.jinja2:69
 msgid "Написать сообщение.."
 msgstr "Nachrichten schreiben"
 
-#: app/templates/home.jinja2:84
+#: app/templates/home.jinja2:79
 msgid "О проекте"
 msgstr "Über das Projekt"
 
-#: app/templates/home.jinja2:86
+#: app/templates/home.jinja2:81
 msgid "язык:"
 msgstr "Sprache:"
 
-#: app/templates/home.jinja2:94
+#: app/templates/home.jinja2:89
 msgid "версия:"
 msgstr "Version:"
-
-#: app/templates/locale/de/about.jinja2:8
-#: app/templates/locale/ru/about.jinja2:8
-msgid "Вернуться на заглавную страницу"
-msgstr "Zurück zu Homepage"
 

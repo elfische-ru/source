@@ -10,10 +10,11 @@
     {% endif %}
     {% block header_css_style %}{% endblock %}
     {% if header_files %}{{ header_files }}{% endif %}
+    {% block js_files %}{% endblock %}
 </head>
 <body{% if is_mobile %} class="mobile"{% endif %}>
     <div class="page-wrapper">
-        <div class="content">
+        <div class="page-content">
             {% block content %}{% endblock %}
         </div>
     </div>

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: elfische.ru 5-1-15-r3\n"
 "Report-Msgid-Bugs-To: info@elfische.ru\n"
-"POT-Creation-Date: 2013-10-02 03:00+0200\n"
+"POT-Creation-Date: 2013-10-11 00:49+0200\n"
 "PO-Revision-Date: 2013-10-01 13:32+0200\n"
 "Last-Translator: mcandrews <mcandrews@elfische.ru>\n"
 "Language-Team: ru_RU <LL@li.org>\n"
@@ -19,15 +19,23 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 0.9.6\n"
 
+#: app/templates/about.jinja2:3
+msgid "О проекте онлайн-квартирников, неофициального сайта Эльфище"
+msgstr ""
+
+#: app/templates/about.jinja2:6
+msgid "Вернуться на заглавную страницу"
+msgstr ""
+
 #: app/templates/home.jinja2:8
-msgid "Бисер — онлайн квартирник Вячеслава Иванцова (Эльфище), 26.10.2013, Берлин"
+msgid "Бисер — онлайн-квартирник Вячеслава Иванцова (Эльфище), 26.10.2013, Берлин"
 msgstr ""
 
 #: app/templates/home.jinja2:17
 msgid "Бисер"
 msgstr ""
 
-#: app/templates/home.jinja2:22
+#: app/templates/home.jinja2:19
 msgid "Онлайн-квартирник Вячеслава Иванцова (Эльфище)"
 msgstr ""
 
@@ -47,65 +55,60 @@ msgstr ""
 msgid "<p class=\"clarify\">московское время: 19:00</p>"
 msgstr ""
 
-#: app/templates/home.jinja2:31
+#: app/templates/home.jinja2:29
 msgid "Место проведения"
 msgstr ""
 
-#: app/templates/home.jinja2:31
+#: app/templates/home.jinja2:29
 msgid "Берлин, Германия"
 msgstr ""
 
-#: app/templates/home.jinja2:32
+#: app/templates/home.jinja2:30
 msgid "Трансляция"
 msgstr ""
 
-#: app/templates/home.jinja2:38
+#: app/templates/home.jinja2:36
 msgid "Социальные сети"
 msgstr ""
 
-#: app/templates/home.jinja2:41
+#: app/templates/home.jinja2:39
 msgid "Вконтакте"
 msgstr ""
 
-#: app/templates/home.jinja2:43
+#: app/templates/home.jinja2:41
 msgid "Одноклассники"
 msgstr ""
 
-#: app/templates/home.jinja2:56
+#: app/templates/home.jinja2:52
 msgid "Тестовое радио"
 msgstr ""
 
-#: app/templates/home.jinja2:59
+#: app/templates/home.jinja2:55
 #, python-format
 msgid "Ваш браузер не поддерживает %(start_link)sHTML5 audio%(end_link)s!"
 msgstr ""
 
-#: app/templates/home.jinja2:67
+#: app/templates/home.jinja2:63
 msgid "Посетителей:"
 msgstr ""
 
-#: app/templates/home.jinja2:68
+#: app/templates/home.jinja2:64
 msgid "Скрытые сообщения"
 msgstr ""
 
-#: app/templates/home.jinja2:73
+#: app/templates/home.jinja2:69
 msgid "Написать сообщение.."
 msgstr ""
 
-#: app/templates/home.jinja2:84
+#: app/templates/home.jinja2:79
 msgid "О проекте"
 msgstr ""
 
-#: app/templates/home.jinja2:86
+#: app/templates/home.jinja2:81
 msgid "язык:"
 msgstr ""
 
-#: app/templates/home.jinja2:94
+#: app/templates/home.jinja2:89
 msgid "версия:"
-msgstr ""
-
-#: app/templates/locale/de/about.jinja2:8
-#: app/templates/locale/ru/about.jinja2:8
-msgid "Вернуться на заглавную страницу"
 msgstr ""
 

@@ -1,0 +1,19 @@
+@import "compass/css3/border-radius"
+@import "vars"
+
+
+#test
+    position: absolute
+    top: 0
+    left: 0
+    z-index: 1000
+    padding: $small_padding
+    background-color: #fff
+    @include border-radius(4px)
+    opacity: .85
+
+    > span:nth-child(1)
+        margin-right: $small_padding
+
+    > span:nth-child(2)
+        margin-left: $small_padding

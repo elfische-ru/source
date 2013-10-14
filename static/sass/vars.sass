@@ -19,7 +19,31 @@ $base2_m3: #329ef1
 $base2_m4: #6bb9f5
 
 
+$coumn_width1: 360px
+
 $base_padding: 5px
 $small_padding: 3px
 
 $footer-height: 20px
+$column_width: 360px
+
+
+=display-flex($value:false)
+    @if $value
+        display: $value
+    @else
+        display: -webkit-flex
+        display: flex
+
+=flex-direction($value)
+    -webkit-flex-direction: $value
+    flex-direction: $value
+
+=flex($value)
+    -webkit-flex: $value
+    flex: $value
+
+=align-self($value)
+    align-self: $value
+    -webkit-align-self: $value
+

@@ -28,11 +28,35 @@ function rsync-start {
         ${VERSION_TARGET}${!#}
 }
 
+
+function generate_js {
+    compressed_path=$VERSION_TARGET/js/compressed
+    if [ ! -e $compressed_path ]; then
+        mkdir $compressed_path
+    fi
+
+    find_path=${ROOT_PATH}/app/templates
+    find $find_path -name '*.jinja2' -print0 |\
+    while read -d $'\0' file; do
+        result=$(sed -nE '/\{% jsfiles %\}/,/\{% endjsfiles %\}/p' $file | sed '1d;$d')
+        if [ "$result" ]; then
+            all_files=''
+            for i in ${result[@]}; do
+                all_files+=" $VERSION_TARGET/js$i"
+            done
+            compresed_file=$(echo ${file:((${#find_path}+1)):-7} | sed 's/\//_/g')'.js'
+            cat $all_files > $compressed_path/$compresed_file
+        fi
+    done
+}
+
 function build_static {
     rsync-start  /static/images/                      /images/
     rsync-start  /tmp/generated/css/{home,about}.css  /css/
     rsync-start  /tmp/generated/js/                   /js/generated/
     rsync-start  /static/coffee/js_lib/               /js/lib/
+
+    generate_js
 
     build_font
 }
@@ -92,9 +116,9 @@ case $1 in
         deploy_static
         deploy_app
         ;;
-    # test)
-    #     git-start  aa bb cc dd ee
-    #     ;;
+    test)
+        generate_js
+        ;;
     *)
         echo "usage: $0 {static|app|all|build_static|build_font}"
         ;;

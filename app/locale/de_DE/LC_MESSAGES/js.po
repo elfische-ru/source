@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: elfische.ru 5-1-15-r3\n"
 "Report-Msgid-Bugs-To: info@elfische.ru\n"
-"POT-Creation-Date: 2013-10-02 03:00+0200\n"
+"POT-Creation-Date: 2013-10-11 00:49+0200\n"
 "PO-Revision-Date: 2013-10-01 13:32+0200\n"
 "Last-Translator: mcandrews <mcandrews@elfische.ru>\n"
 "Language-Team: de_DE <info@elfische.ru>\n"
@@ -18,8 +18,9 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 0.9.6\n"
 
-#: tmp/generated/js/home.js:150
+#: tmp/generated/js/home.js:139
 msgid "Скрыто {0} сообщение"
 msgid_plural ""
 msgstr[0] "{0} Nachricht is versteckt"
 msgstr[1] "{0} Nachrichten sind versteckt"
+

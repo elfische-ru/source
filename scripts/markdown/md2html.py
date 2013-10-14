@@ -17,12 +17,10 @@ class MD2Html:
     def __init__(self,
                  md_files='.',
                  output_html_path='output.html',
-                 main_template_path='main.html',
                  header_file=None):
 
         self.md_files = md_files
         self.output_html_path = output_html_path
-        self.main_template_path = main_template_path
         self.header_file = header_file
 
         self.md = markdown.Markdown(output_format = 'html5')
@@ -117,10 +115,10 @@ class MD2Html:
         header = self.markdown_convert(header) if header else ''
         content = self.markdown_convert(content)
 
-        return template.render(self.main_template_path, {
+        return {
             'header': header,
             'content': content,
-        })
+        }
 
         # nav, content = self.get_nav(content)
 

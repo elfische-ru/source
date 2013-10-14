@@ -1,0 +1,40 @@
+@import "compass"
+@import "../vars"
+
+
+textarea, input
+    outline: none
+
+html, body
+    height: 100%
+
+body
+    font-size: 14px
+
+
+.page-wrapper
+    min-height: 100%
+    margin-bottom: -($footer-height + 8px)
+    overflow: hidden
+
+.page-content
+    overflow: hidden
+    padding: $base_padding
+    position: relative
+    @include display-flex()
+
+.column
+    width: $column_width
+
+    &:nth-child(2)
+        margin-left: $base_padding
+        @include display-flex()
+        @include flex-direction(column)
+
+        > .block:nth-child(2)
+            margin-top: $base_padding
+            @include flex(auto)
+
+.block
+    @include border-radius(4px)
+    border: 1px solid #a7a7a7

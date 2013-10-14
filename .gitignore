@@ -3,8 +3,10 @@
 /app/static/fonts
 /app/babel
 /app/pytz
+/app/markdown2.py
 /scripts/.sass-cache
 /scripts/local.sh
 /tmp
 *.mo
 *.pot
+.gitignore_local

@@ -6,8 +6,12 @@ import os
 import json
 import re
 import jinja2
+from jinja2 import nodes
 import gettext
+from jinja2.ext import Extension
 from lib import mobilebrowser
+import markdown2
+import md2html
 
 
 DEBUG = 'Development' in os.environ['SERVER_SOFTWARE']
@@ -21,14 +25,66 @@ else:
     STATIC_URL = 'http://elfische-ru.github.io/static/build/%s' % APP_VERSION
 
 
-class Template:
-    def __init__(self):
-        self.jinja2 = jinja2.Environment(
-            loader=jinja2.FileSystemLoader(
-                os.path.join(os.path.dirname(__file__), '../templates')
-            ),
-            extensions=['jinja2.ext.i18n'],
+
+class JsFilesExtension(Extension):
+    tags = set(['jsfiles'])
+
+    def __init__(self, environment):
+        super(JsFilesExtension, self).__init__(environment)
+        environment.extend(jsfiles_template_path = '')
+
+    def parse(self, parser):
+        lineno = parser.stream.next().lineno
+        body = parser.parse_statements(['name:endjsfiles'], drop_needle=True)
+        compressed_js = '%s.js' % (
+            parser
+                .filename[len(self.environment.jsfiles_template_path) + 1:-7]
+                .replace('/', '_')
         )
+        return nodes.CallBlock(
+            self.call_method('_render', [nodes.Const(compressed_js)]),
+            [],
+            [],
+            body
+        ).set_lineno(lineno)
+
+    def _render(self, compressed_js=None, caller=None):
+        app_verion_full = os.environ['CURRENT_VERSION_ID']
+
+        body = caller()
+
+        if not DEBUG or True:
+            body = '/compressed/%s' % compressed_js
+
+        html_scripts = []
+        for js_file_name in body.splitlines():
+            js_file_name = js_file_name.strip()
+            add_link = '<script src="%s/js%s?%s"></script>' % (
+                STATIC_URL,
+                js_file_name,
+                app_verion_full,
+            )
+            html_scripts.append(add_link)
+        body = ''.join(html_scripts)
+
+        return body
+
+
+class Template:
+    def __init__(self, request):
+        self.request = request
+        template_path = os.path.join(os.path.dirname(__file__), '../templates')
+        self.jinja2 = jinja2.Environment(
+            loader=jinja2.FileSystemLoader(template_path),
+            extensions=['jinja2.ext.i18n', JsFilesExtension],
+        )
+        self.jinja2.jsfiles_template_path = template_path
+        self.jinja2.filters['markdown'] = self.safe_markdown
+
+    def safe_markdown(self, text):
+        md = md2html.MD2Html()
+        out = md.markdown_convert(text)
+        return jinja2.Markup(out)
 
     def set_locale(self, lang):
         self.lang = lang
@@ -79,10 +135,10 @@ class Template:
             )
         return ''.join(out)
 
-    def render(self, name, data={}, js_data={}, css=[], js=[], request=None):
+    def render(self, name, data={}, js_data={}, css=[], js=[]):
         is_mobile = (
-            mobilebrowser.detect(request.headers.get('User-Agent', ''))
-            if request else
+            mobilebrowser.detect(self.request.headers.get('User-Agent', ''))
+            if self.request and 'User-Agent' in self.request.headers else
             False
         )
 
@@ -104,8 +160,3 @@ class Template:
         template_data.update(data)
 
         return self.jinja2.get_template('%s.jinja2' % name).render(template_data)
-
-
-template = Template()
-render = template.render
-set_locale = template.set_locale

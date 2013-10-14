@@ -12,8 +12,8 @@ class ApiController(webapp2.RequestHandler):
             users_count = chat.get_users_count()
             self.response.out.write(users_count)
         elif action == 'mt':
-            # pass
-            chat.maintenance()
+            pass
+            # chat.maintenance()
 
     def post(self, action):
         if action == 'chat_message':

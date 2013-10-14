@@ -1,0 +1,17 @@
+{% extends "main.jinja2" %}
+
+{% macro file_trans(path) -%}
+    {% include 'locale/' + lang + path %}
+{%- endmacro %}
+
+
+{% block title %}{% trans %}О проекте онлайн-квартирников, неофициального сайта Эльфище{% endtrans %}{% endblock %}
+
+{% block content %}
+    <a class="back" href="/{{ lang }}">{% trans %}Вернуться на заглавную страницу{% endtrans %}</a>
+    <div class="about">
+        {% filter markdown %}
+            {{ file_trans('/about.md') }}
+        {% endfilter %}
+    </div>
+{% endblock %}

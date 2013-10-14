@@ -1,4 +1,4 @@
-.page-wrapper:after
+s.page-wrapper:after
     content: ""
     display: block
 
@@ -6,6 +6,9 @@ footer, .page-wrapper:after
     height: $footer-height
 
 footer
+    margin-left: $base_padding
+    overflow: hidden
+
     dl
         margin: 0 0 0 $base_padding
 
@@ -48,12 +51,3 @@ footer
                             @include border-radius($small_padding)
                             text-decoration: none
                             color: #000
-
-
-
-body.mobile
-    .page-wrapper:after
-        display: none
-
-    footer
-        margin-top: $base_padding

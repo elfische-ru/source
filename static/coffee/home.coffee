@@ -36,16 +36,16 @@ class Chat
             @comm.sent 'chat_message', msg: @chat_input.val()
             @chat_input.val('').focus()
 
-        if ! JS_DATA.is_mobile
-            setTimeout(
-                =>
-                    @chat_input.focus()
-                    $.injectCSS
-                        '.chat .input-box input':
-                            'animation': 'ma_ab1 .5s',
-                            '-webkit-animation': 'ma_ab1 .5s'
-                400
-            )
+        # if ! JS_DATA.is_mobile
+        #     setTimeout(
+        #         =>
+        #             @chat_input.focus()
+        #             $.injectCSS
+        #                 '.chat .input-box input':
+        #                     'animation': 'ma_ab1 .5s',
+        #                     '-webkit-animation': 'ma_ab1 .5s'
+        #         400
+        #     )
 
         @show_users_count JS_DATA.users_count
 
@@ -157,10 +157,11 @@ class Chat
 
 
 class Response
-    columns: ->
-        first_col_height = $('body > .page-wrapper > .content > .column:eq(0)').height()
-        media_height = $('.media').height()
-        $('.chat .content-wrapper').height(first_col_height - media_height - 69)
+    main: ->
+        # first_col_height = $('body > .page-wrapper > .content > .column:eq(0)').height()
+        # media_height = $('.media').height()
+        # $('.chat .content-wrapper').height(first_col_height - media_height - 69)
+        console.debug 11111
 
 
 response = new Response()
@@ -172,11 +173,17 @@ $(document).ready ->
         #=======================================================================
         show_size = () ->
             width = $(window).width()
+            height = $(window).height()
             test = $('#test')
             if not test.length
                 test = $('<div>').attr('id', 'test')
                 $('body').prepend(test)
-            test.text width
+            content = [
+                $('<span>').text(width),
+                'x',
+                $('<span>').text(height),
+            ]
+            test.html(content)
 
         set_text_size = ->
             $('.info .cover-wrapper .summary').css({
@@ -184,12 +191,12 @@ $(document).ready ->
             })
 
         set_text_size()
-        # show_size()
+        show_size()
 
         $(window).resize ->
-            # show_size($()
+            show_size()
             set_text_size()
-            response.columns()
+            response.main()
 
         if JS_DATA.is_mobile
             $('footer').insertAfter(".info")
@@ -200,4 +207,4 @@ $(document).ready ->
 
 
 $(window).load ->
-    response.columns()
+    response.main()

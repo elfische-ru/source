@@ -1,22 +1,29 @@
 @import "vars"
+@import "compass"
 
 
 .info
-    .cover-wrapper
-        position: relative
+    > .header-wrapper
+        > .cover-wrapper
+            position: relative
 
-        > .cover
-            display: block
-            width: 100%
+            > .cover
+                display: block
+                width: 100%
 
-        > h1
-            font-size: 3em
-            font-weight: normal
-            margin: 0
-            position: absolute
-            bottom: 4%
-            left: 4%
-            color: #fff
+            > h1
+                font-size: 3em
+                font-weight: normal
+                margin: 0
+                position: absolute
+                bottom: 4%
+                left: 4%
+                color: #fff
+
+        > h2
+            font-size: 1em
+            margin: $base_padding $base_padding + $small_padding 0
+
 
     .content-wrapper
         padding: $base_padding
@@ -28,9 +35,8 @@
                 > table
                     margin-top: $base_padding
 
-            > h2
-                font-size: 1em
-                margin: 0
+                    tr td .notice
+
 
             > table
                 width: 100%
@@ -66,3 +72,6 @@
 
                             &.label
                                 width: 8rem
+
+
+
