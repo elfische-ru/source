@@ -43,10 +43,9 @@ def check_users():
 
 def disconnect_user(stream_user_id):
     users = memcache.get('char_user_ids')
-    if users:
-        if stream_user_id in users:
-            users.remove(stream_user_id)
-            memcache.set('char_user_ids', users)
+    if users and stream_user_id in users:
+        users.remove(stream_user_id)
+        memcache.set('char_user_ids', users)
         sent_to_all({'users_count': len(users)})
 
 def get_last_messages():
@@ -96,8 +95,6 @@ def get_last_messages():
         out += visible[visible_id:]
 
     return out
-
-
 
 def create_user(user_data={}):
     stream_user_id = 'user_%s' % memcache.incr(

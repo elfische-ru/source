@@ -66,7 +66,6 @@ function _sass {
             fi
             ;;
     esac
-
 }
 
 function _app {

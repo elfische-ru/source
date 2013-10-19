@@ -8,9 +8,12 @@
         var JS_DATA = {{ js_data }};
     </script>
     {% endif %}
+
+    {% block css_files %}{% endblock %}
     {% block header_css_style %}{% endblock %}
-    {% if header_files %}{{ header_files }}{% endif %}
+
     {% block js_files %}{% endblock %}
+    {% block js_files_static %}{% endblock %}
 </head>
 <body{% if is_mobile %} class="mobile"{% endif %}>
     <div class="page-wrapper">
