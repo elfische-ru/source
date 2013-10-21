@@ -1,16 +1,34 @@
 {% extends "main.jinja2" %}
 
+
+{% block css_files %}{% pagefiles 'css' %}
+    home.css
+{% endpagefiles %}{% endblock %}
+
 {% block header_css_style %}
 {% include "header_css_style.jinja2" %}
 {% endblock %}
 
-{% block js_files %}{% jsfiles %}
-    /lib/jquery.injectCSS.js
-    /lib/cssanimation.min.js
-    /lib/cssanimation.jquery.min.js
-    /generated/i18n.js
-    /generated/home.js
-{% endjsfiles %}{% endblock %}
+
+{% block js_files %}{% pagefiles 'js', 'extern' %}
+    /_ah/channel/jsapi
+    https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js
+{% endpagefiles %}{% endblock %}
+
+{% block js_files_static %}{% pagefiles 'js' %}
+    lib/jquery.injectCSS
+    lib/cssanimation.min
+    lib/cssanimation.jquery.min
+    generated/dev
+    generated/i18n
+    generated/chat
+    generated/comm
+    generated/mod
+    generated/response
+    generated/user_info
+    generated/home
+{% endpagefiles %}{% endblock %}
+
 
 {% block title %}
 {% trans %}Бисер — онлайн-квартирник Вячеслава Иванцова (Эльфище), 26.10.2013, Берлин{% endtrans  %}
@@ -52,6 +70,10 @@
             </div>
         </div>
     </div>
+
+    <div class="user_info block">
+        <div class="content-wrapper"></div>
+    </div>
 </div>
 
 <div class="column">
@@ -66,13 +88,10 @@
             </dd>
         </dl>
     </div>
-
     <div class="chat block">
         <div class="chat-info"><dl><dt>{% trans %}Посетителей:{% endtrans %}</dt><dd></dd></dl></div>
         <div class="chat-hidden">{% trans %}Скрытые сообщения{% endtrans %}</div>
-        <div class="content-wrapper">
-            <div class="up_beam"></div>
-        </div>
+        <div class="content-wrapper"></div>
         <div class="input-box">
             <input type="text" placeholder="{% trans %}Написать сообщение..{% endtrans %}" />
             <button class="sent"></button>

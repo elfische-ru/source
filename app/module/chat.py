@@ -9,22 +9,26 @@ import django.utils.html
 
 sys.path.append(os.path.dirname(os.getcwd()))
 import model
-import module.maintenance
 
 
-def write(msg):
-    created = datetime.datetime.now()
+def write(data):
     model.Chat(
-        msg = msg,
-        created = created,
-        lang=db.Category('ru')
+        msg = data['msg'],
+        created = data['created'],
+        lang=db.Category('ru'),
     ).put()
-    sent_to_all({
-        'add_message': {
-            'msg': django.utils.html.escape(msg),
-            'created': to_unix_time(created)
-        }
-    })
+
+def chat_message(data):
+    '''
+        msg:
+        client_msg_id:
+    '''
+    data['created'] = datetime.datetime.now()
+
+    write(data)
+
+    data['created'] = to_unix_time(data['created'])
+    sent_to_all({'add_message': data})
 
 def check_users():
     users = memcache.get('char_user_ids')
@@ -43,40 +47,29 @@ def check_users():
 
 def disconnect_user(stream_user_id):
     users = memcache.get('char_user_ids')
-    if users:
-        if stream_user_id in users:
-            users.remove(stream_user_id)
-            memcache.set('char_user_ids', users)
+    if users and stream_user_id in users:
+        users.remove(stream_user_id)
+        memcache.set('char_user_ids', users)
         sent_to_all({'users_count': len(users)})
 
-def get_last_messages():
-    # get visible
+def get_filtered_messages(**kwargs):
     query = model.Chat.all()
     query.order('-created')
     query.filter('lang IN', ['ru', None])
-    query.filter('hidden =', False)
-    visible = []
+    query.filter('hidden =', kwargs.get('hidden', False))
+    out = []
     for i in query.run(limit=30):
-        visible.append({
+        out.append({
             'id': i.key().id(),
-            'msg': django.utils.html.escape(i.msg),
+            'msg': i.msg,
             'created': to_unix_time(i.created),
             'hidden': i.hidden,
         })
+    return out
 
-    # get hidden
-    query = model.Chat.all()
-    query.order('-created')
-    query.filter('lang IN', ['ru', None])
-    query.filter('hidden =', True)
-    hidden = []
-    for i in query.run(limit=30):
-        hidden.append({
-            'id': i.key().id(),
-            'msg': django.utils.html.escape(i.msg),
-            'created': to_unix_time(i.created),
-            'hidden': i.hidden,
-        })
+def get_last_messages():
+    visible = get_filtered_messages()
+    hidden = get_filtered_messages(hidden = True)
 
     # merge visible and hidden
     out = []
@@ -94,10 +87,7 @@ def get_last_messages():
         out += hidden[hidden_id:]
     elif visible_id < len(visible):
         out += visible[visible_id:]
-
     return out
-
-
 
 def create_user(user_data={}):
     stream_user_id = 'user_%s' % memcache.incr(
@@ -144,10 +134,6 @@ def get_users_count():
 
 def send_to_user(stream_user_id, data):
     channel.send_message(stream_user_id, json.dumps(data))
-
-def maintenance():
-    # module.maintenance.start()
-    pass
 
 def message_action(action, message_id, visitor_id):
     model.MessageActions(

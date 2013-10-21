@@ -4,6 +4,9 @@
     {% include 'locale/' + lang + path %}
 {%- endmacro %}
 
+{% block css_files %}{% pagefiles 'css' %}
+    about.css
+{% endpagefiles %}{% endblock %}
 
 {% block title %}{% trans %}О проекте онлайн-квартирников, неофициального сайта Эльфище{% endtrans %}{% endblock %}
 

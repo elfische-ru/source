@@ -1,5 +1,7 @@
-[jinja2: app/templates/**.jinja2]
-encoding = utf-8
-[python: app/**.py]
+[python: **.py]
+
+[jinja2: templates/**.jinja2]
+extensions= module.jinja2_pagefiles.PageFilesExtension
+
 [extractors]
 jinja2 = jinja2.ext:babel_extract

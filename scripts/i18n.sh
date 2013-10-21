@@ -8,17 +8,36 @@ VERSION=$(sed -rne 's/^version: (.*)\s+/\1/p' $ROOT_PATH/app/app.yaml)
 
 
 function extract {
-    $(\
-        cd $ROOT_PATH; \
-        pybabel extract \
-            --msgid-bugs-address=$I18N_EMAIL \
-            --copyright-holder=$I18N_COPYRIGHT_HOLDER \
-            --project=$I18N_PROJECT \
-            --version=$VERSION \
-            -F app/$1.mapping \
-            -o app/locale/$1.pot \
-            . \
+    args=(
+        --msgid-bugs-address=$I18N_EMAIL
+        --copyright-holder=$I18N_COPYRIGHT_HOLDER
+        --project=$I18N_PROJECT
+        --version=$VERSION
     )
+
+    case $1 in
+        base)
+            $(\
+                cd $ROOT_PATH/app; \
+                PYTHONPATH=$ROOT_PATH/app \
+                pybabel extract \
+                    ${args[@]} \
+                    -F $1.mapping \
+                    -o locale/$1.pot \
+                    . \
+            )
+            ;;
+        js)
+            $(\
+                cd $ROOT_PATH; \
+                pybabel extract \
+                    ${args[@]} \
+                    -F app/$1.mapping \
+                    -o app/locale/$1.pot \
+                    . \
+            )
+            ;;
+    esac
 }
 
 function init_domain {
@@ -44,10 +63,12 @@ case $1 in
         compile base
         compile js
         ;;
-    update)
+    extract)
         extract base
-        update base
         extract js
+        ;;
+    update)
+        update base
         update js
         ;;
     *)

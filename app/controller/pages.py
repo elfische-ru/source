@@ -42,18 +42,15 @@ class PagesController(webapp2.RequestHandler):
                 'last_messages':  chat.get_last_messages(),
                 'users_count':    chat.get_users_count(),
             },
-            css = ['home'],
-            js = [
-                ('url',    '/_ah/channel/jsapi'),
-                ('url',    ('https://ajax.googleapis.com/ajax/libs/jquery'
-                            '/2.0.3/jquery.min.js')),
-            ],
         )
 
     def get_page(self, page_code):
         out = ''
         if page_code == 'about':
-            out = self.template.render('about', css = ['about'])
+            out = self.template.render('about')
+        if page_code == 'test':
+            import test
+            out = test.text()
         else:
             self.error(404)
         return out

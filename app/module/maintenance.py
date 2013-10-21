@@ -21,7 +21,7 @@ def UpdateSchema(cursor=None):
 
     if to_put:
         # db.delete(to_put)
-        db.put(to_put)
+        # db.put(to_put)
         deferred.defer(UpdateSchema, cursor=query.cursor())
     else:
         # complete

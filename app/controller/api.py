@@ -3,7 +3,7 @@ Source code for http://www.elfische.ru website.
 Released under the MIT license (http://opensource.org/licenses/MIT).
 '''
 import webapp2
-from module import chat
+from module import chat, maintenance
 
 
 class ApiController(webapp2.RequestHandler):
@@ -11,13 +11,19 @@ class ApiController(webapp2.RequestHandler):
         if action == 'check':
             users_count = chat.get_users_count()
             self.response.out.write(users_count)
-        elif action == 'mt':
-            pass
-            # chat.maintenance()
+        # elif action == 'mt':
+        #     maintenance.start()
+
+
+    def get_response_data(self):
+        out = {}
+        for key in self.request.arguments():
+            out[key] = self.request.get(key)
+        return out
 
     def post(self, action):
         if action == 'chat_message':
-            chat.write(self.request.get('msg'))
+            chat.chat_message(self.get_response_data())
         elif action == 'check_user_live':
             chat.check_user_live(self.request.get('user_id'))
         elif action == 'hide_message':

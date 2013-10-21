@@ -14,13 +14,12 @@ window.gettext = (msgid) ->
     if (typeof(value) == 'undefined')
         return msgid
     else
-        return (typeof(value) == 'string') ? value : value[0]
+        return if typeof(value) == 'string' then value else value[0]
 
 window.ngettext = (singular, plural, count) ->
     value = get_value_from_translations(JS_DATA.js_translations, singular)
-
     if (typeof(value) == 'undefined')
-        return (count == 1) ? singular : plural
+        return if count == 1 then singular else plural
     else
         return value[plural_index(count, JS_DATA.js_translations)]
 
