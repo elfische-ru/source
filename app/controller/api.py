@@ -2,6 +2,7 @@
 Source code for http://www.elfische.ru website.
 Released under the MIT license (http://opensource.org/licenses/MIT).
 '''
+import json
 import webapp2
 from module import chat, maintenance
 
@@ -13,7 +14,6 @@ class ApiController(webapp2.RequestHandler):
             self.response.out.write(users_count)
         # elif action == 'mt':
         #     maintenance.start()
-
 
     def get_response_data(self):
         out = {}
@@ -32,6 +32,17 @@ class ApiController(webapp2.RequestHandler):
                 self.request.get('message_id'),
                 self.request.get('visitor_id'),
             )
+        elif action == 'new_connection':
+            user_data = chat.create_user({
+                'ip':    self.request.remote_addr,
+                'agent': self.request.headers.get('User-Agent'),
+                'ref':   '',
+            })
+            out = {
+                'tocken': user_data['tocken'],
+                'stream_user_id': user_data['stream_user_id'],
+            }
+            self.response.out.write(json.dumps(out))
 
 class ChatController(webapp2.RequestHandler):
     def post(self, action):

@@ -1,7 +1,12 @@
 
 class window.Comm
+    retry_number: 0
+
     constructor: ->
         @dispathers = {}
+        @open_channel()
+
+    open_channel: ->
         @channel = new goog.appengine.Channel JS_DATA.user_tocken
         window.user_info.add(
             gettext('Имя пользователя: {0}')
@@ -25,6 +30,7 @@ class window.Comm
 
         @socket.onclose = (evt) =>
             window.user_info.add(gettext('Соединение закрыто'))
+            @new_connection_delay()
 
 
     sent: (action, data) ->
@@ -36,3 +42,31 @@ class window.Comm
 
     onmessage: (name, dispath) ->
         @dispathers[name] = dispath
+
+    set_new_data: (data) ->
+        JS_DATA.user_tocken = data.tocken
+        JS_DATA.stream_user_id = data.stream_user_id
+        @open_channel()
+
+    new_connection_delay: ->
+        setTimeout(
+            @new_connection.bind(this),
+            1000
+        )
+
+    new_connection: ->
+        window.user_info.add_last(
+            'new_connection',
+            gettext('Устанавливается новое соединение, попытка: {0}')
+                .format(@retry_number)
+        )
+        $.ajax
+            type: 'POST'
+            url: '/api/new_connection'
+            dataType: 'json'
+            error: (env) =>
+                @retry_number++
+                @new_connection_delay()
+            success: (data) =>
+                @retry_number = 0
+                @set_new_data(data)

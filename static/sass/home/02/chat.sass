@@ -2,10 +2,6 @@
 .chat
     position: relative
 
-    @include display-flex()
-    @include flex-direction(column)
-
-
     .chat-info
         padding: $small_padding
         height: 20px
@@ -41,7 +37,6 @@
         z-index: 5
         overflow: hidden
         position: relative
-        @include flex(auto)
 
         @import "chat/content"
 

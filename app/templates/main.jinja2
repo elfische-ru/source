@@ -17,11 +17,8 @@
 </head>
 <body{% if is_mobile %} class="mobile"{% endif %}>
     <div class="page-wrapper">
-        <div class="page-content">
-            {% block content %}{% endblock %}
-        </div>
+        {% block content %}{% endblock %}
     </div>
-    {% block footer %}{% endblock %}
     {% if not debug %}
         {% include "google_analytics.js.jinja2" %}
     {% endif %}
