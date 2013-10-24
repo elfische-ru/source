@@ -47,10 +47,19 @@ $column_width: 360px
     align-self: $value
     -webkit-align-self: $value
 
+=gradient01($direction)
+    @include background-image(linear-gradient($direction, rgba(255,255,255,1) 0%, rgba(255,255,255,0.78) 66%, rgba(255,255,255,0) 100%))
 
+=gradient02($direction)
+    @include background-image(linear-gradient($direction, rgba(255,255,255,.94) 70%, rgba(255,255,255,0.78) 90%, rgba(255,255,255,0) 100%))
 
 a.extern
     background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAVElEQVR42n3PgQkAIAhEUXdqJ3dqJ3e6IoTPUSQcgj4EQ5IlUiLE0Jil3PECXhcHGBhZ8kg4hwxAu3MZeCGeyFnAXp4hqNQPnt7QL0nADpD6wHccLvnAKksq8iiaAAAAAElFTkSuQmCC)
     background-position: center right
     background-repeat: no-repeat
     padding-right: 13px
+
+//===============================
+
+dl
+    margin: 0

@@ -11,6 +11,15 @@ html, body, .page-wrapper
         @include flex-direction(column)
 
         .content-wrapper
-            // height: 100%
             @include flex(auto)
 
+
+.block.fly
+    > .block
+        float: left
+        margin-left: $base_padding
+
+        &.media,
+        &.user_info
+            float: right
+            margin: $base_padding $base_padding 0 0

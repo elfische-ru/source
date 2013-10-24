@@ -62,7 +62,7 @@ class window.Chat
                         'sent'
 
     show_users_count: (count) ->
-        $('.chat .chat-info dd').text(count)
+        # $('.chat .chat-info dd').text(count)
 
     get_client_msg_id: () ->
         return @client_msg_id_count++

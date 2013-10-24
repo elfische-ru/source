@@ -1,0 +1,56 @@
+
+.block.main_info
+    > .content-wrapper
+        overflow: hidden
+        margin: $base_padding 0
+
+        dl
+            margin: 0 0 0 $base_padding
+
+            dt, dd
+                float: left
+                margin-top: $base_padding
+
+                &:first-child
+                    margin-top: 0
+
+                &.lang
+                    margin-top: 0
+
+            dt
+                font-weight: bold
+                clear: left
+
+                &.lang
+                    clear: none
+
+                    &:before
+                        content: ","
+                        margin: 0 $base_padding 0 0
+                        font-weight: normal
+
+            dd
+                margin-left: $base_padding
+
+                &.lang
+                    ul
+                        list-style: none
+                        padding: 0
+                        margin: 0
+
+                        li
+                            float: left
+
+                            &:before
+                                content: "|"
+                                margin: 0 $small_padding/2
+
+                            &:first-child:before
+                                display: none
+
+                            &.active a
+                                padding: $small_padding/2 $small_padding 0
+                                background-color: #BCD8FF
+                                @include border-radius($small_padding)
+                                text-decoration: none
+                                color: #000

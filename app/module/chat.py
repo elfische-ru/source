@@ -58,7 +58,7 @@ def get_filtered_messages(**kwargs):
     query.filter('lang IN', ['ru', None])
     query.filter('hidden =', kwargs.get('hidden', False))
     out = []
-    for i in query.run(limit=30):
+    for i in query.run(limit=50):
         out.append({
             'id': i.key().id(),
             'msg': i.msg,

@@ -1,0 +1,28 @@
+
+.block.user_info
+    width: 20rem
+    height: 100%
+
+    .content-wrapper
+        overflow-x: hidden
+        margin: $base_padding
+
+        .log
+            overflow-y: scroll
+            position: relative
+            margin: 0 -15px 0 0
+            -moz-margin-right: 0
+            height: 100%
+            list-style: none
+            padding: 0
+            font-size: .8rem
+
+            &::-webkit-scrollbar
+                display: none
+
+            li
+                padding: $small_padding $small_padding 2px
+                @include border-radius(1px)
+
+                &:nth-child(odd)
+                    background-color: #f2f2f2

@@ -37,13 +37,13 @@
 {% block content %}
 {% import 'blocks.jinja2' as blocks %}
 
-{{ blocks.chat() }}
-
 <div class="block fly">
-    {# {{ blocks.main_info() }} #}
+    {{ blocks.main_info(lang) }}
     {# {{ blocks.event() }} #}
-    {# {{ blocks.user_info() }} #}
     {{ blocks.media() }}
+    {{ blocks.user_info() }}
 </div>
+
+{{ blocks.chat() }}
 
 {% endblock %}
